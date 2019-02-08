@@ -5,19 +5,19 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "channels".
+ * This is the model class for table "channel".
  *
  * @property int $id
  * @property string $channel_type
  */
-class Channels extends \yii\db\ActiveRecord
+class Channel extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'channels';
+        return 'channel';
     }
 
     /**

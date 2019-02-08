@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Channels;
-use app\models\search\ChannelsSearch;
+use app\models\Channel;
+use app\models\search\ChannelSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ChannelsController implements the CRUD actions for Channels model.
+ * ChannelController implements the CRUD actions for Channel model.
  */
-class ChannelsController extends Controller
+class ChannelController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class ChannelsController extends Controller
     }
 
     /**
-     * Lists all Channels models.
+     * Lists all Channel models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ChannelsSearch();
+        $searchModel = new ChannelSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,12 +45,12 @@ class ChannelsController extends Controller
     }
 
     /**
-     * Displays a single Channels model.
+     * Displays a single Channel model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function action($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -58,13 +58,13 @@ class ChannelsController extends Controller
     }
 
     /**
-     * Creates a new Channels model.
+     * Creates a new Channel model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Channels();
+        $model = new Channel();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class ChannelsController extends Controller
     }
 
     /**
-     * Updates an existing Channels model.
+     * Updates an existing Channel model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class ChannelsController extends Controller
     }
 
     /**
-     * Deletes an existing Channels model.
+     * Deletes an existing Channel model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class ChannelsController extends Controller
     }
 
     /**
-     * Finds the Channels model based on its primary key value.
+     * Finds the Channel model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Channels the loaded model
+     * @return Channel the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Channels::findOne($id)) !== null) {
+        if (($model = Channel::findOne($id)) !== null) {
             return $model;
         }
 

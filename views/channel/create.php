@@ -3,10 +3,10 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Channels */
+/* @var $model app\models\Channel */
 
-$this->title = 'Create Channels';
-$this->params['breadcrumbs'][] = ['label' => 'Channels', 'url' => ['index']];
+$this->title = 'Create Channel';
+$this->params['breadcrumbs'][] = ['label' => 'Channel', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="channels-create">

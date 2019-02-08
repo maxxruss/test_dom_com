@@ -39,9 +39,14 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Hello', 'url' => ['/site/hello']],
+            ['label' => 'Channel', 'url' => ['/channel/index']],
+            ['label' => 'Cluster', 'url' => ['/cluster/index']],
+            ['label' => 'Number', 'url' => ['/number/index']],
+            ['label' => 'Right', 'url' => ['/right/index']],
+            ['label' => 'SIP_Devices', 'url' => ['/sipdevice/index']],
+            ['label' => 'Trank', 'url' => ['/trank/index']],
+            ['label' => 'Turn', 'url' => ['/turn/index']],
+            ['label' => 'User', 'url' => ['/user/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

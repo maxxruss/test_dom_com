@@ -4,12 +4,12 @@ namespace app\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Channels;
+use app\models\Channel;
 
 /**
- * ChannelsSearch represents the model behind the search form of `app\models\Channels`.
+ * ChannelSearch represents the model behind the search form of `app\models\Channel`.
  */
-class ChannelsSearch extends Channels
+class ChannelSearch extends Channel
 {
     /**
      * {@inheritdoc}
@@ -40,7 +40,7 @@ class ChannelsSearch extends Channels
      */
     public function search($params)
     {
-        $query = Channels::find();
+        $query = Channel::find();
 
         // add conditions that should always apply here
 
