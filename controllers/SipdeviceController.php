@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\objects\ViewModels\SipCreateView;
 use Yii;
 use app\models\SipDevice;
 use app\models\search\SipDeviceSearch;
@@ -53,10 +54,13 @@ class SipdeviceController extends Controller
      */
     public function actionView($id)
     {
+
         if (\Yii::$app->user->can('view')) {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+                'viewModel' => new SipCreateView(),
+
+            ]);
         }
 
         throw new ForbiddenHttpException('Недостаточно прав для данного действия');
@@ -79,6 +83,8 @@ class SipdeviceController extends Controller
 
             return $this->render('create', [
                 'model' => $model,
+                'viewModel' => new SipCreateView(),
+
             ]);
         }
 
@@ -98,13 +104,14 @@ class SipdeviceController extends Controller
 
         if (\Yii::$app->user->can('update')) {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+            return $this->render('update', [
+                'model' => $model,
+                'viewModel' => new SipCreateView(),
+            ]);
         }
 
         throw new ForbiddenHttpException('Недостаточно прав для данного действия');
@@ -120,9 +127,9 @@ class SipdeviceController extends Controller
     public function actionDelete($id)
     {
         if (\Yii::$app->user->can('delete')) {
-        $this->findModel($id)->delete();
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
         }
 
         throw new ForbiddenHttpException('Недостаточно прав для данного действия');

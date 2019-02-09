@@ -1,9 +1,12 @@
 <?php
 
 use yii\helpers\Html;
+use app\objects\ViewModels\SipCreateView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\SipDevice */
+/* @var $viewModel SipCreateView */
+
 
 $this->title = 'Update Sip Device: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Sip Devices', 'url' => ['index']];
@@ -16,6 +19,8 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'viewModel' => $viewModel,
+
     ]) ?>
 
 </div>

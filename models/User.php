@@ -16,6 +16,7 @@ use yii\db\ActiveRecord;
  * @property string $authKey
  * @property integer $accessToken
  * @property integer $password_hash
+ * @property User[] $user
  */
 class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
@@ -130,5 +131,13 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function generateAuthKey()
     {
         $this->authKey = Yii::$app->security->generateRandomString();
+    }
+
+    /**
+    @return ActiveQuery
+     */
+    public function getSipDevice(): ActiveQuery
+    {
+        return $this->hasMany(SipDevice::class, ['user_id'=>'id']);
     }
 }

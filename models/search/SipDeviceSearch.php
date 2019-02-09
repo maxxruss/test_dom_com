@@ -17,7 +17,7 @@ class SipDeviceSearch extends SipDevice
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'user_id'], 'integer'],
             [['type_device'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class SipDeviceSearch extends SipDevice
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'user_id' => $this->user_id,
         ]);
 
         $query->andFilterWhere(['like', 'type_device', $this->type_device]);
