@@ -16,6 +16,8 @@ use yii\filters\VerbFilter;
  */
 class ChannelController extends Controller
 {
+
+
     /**
      * {@inheritdoc}
      */
