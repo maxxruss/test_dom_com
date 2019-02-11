@@ -6,6 +6,7 @@ use app\objects\ViewModels\SipCreateView;
 use Yii;
 use app\models\SipDevice;
 use app\models\search\SipDeviceSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -28,6 +29,15 @@ class SipdeviceController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'], // авторизованные пользователи
+                    ],
+                ],
+            ]
         ];
     }
 

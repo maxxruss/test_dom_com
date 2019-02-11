@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Turn;
 use app\models\search\TurnSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -27,6 +28,15 @@ class TurnController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'], // авторизованные пользователи
+                    ],
+                ],
+            ]
         ];
     }
 

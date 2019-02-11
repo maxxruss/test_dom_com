@@ -15,6 +15,7 @@ use Yii;
  */
 class AuthAssignment extends \yii\db\ActiveRecord
 {
+
     /**
      * {@inheritdoc}
      */

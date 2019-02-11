@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Right;
 use app\models\search\RightSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -27,6 +28,15 @@ class RightController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'], // авторизованные пользователи
+                    ],
+                ],
+            ]
         ];
     }
 
