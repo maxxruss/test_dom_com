@@ -53,6 +53,7 @@ $config = [
             'class' => 'yii\rbac\DbManager'
         ]
     ],
+    'defaultRoute' => 'site/index',
     'params' => $params,
 ];
 

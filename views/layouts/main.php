@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use app\widgets\Alert;
@@ -25,61 +26,59 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+<?= Breadcrumbs::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+]) ?>
+<div class="row-no-gutters">
+    <div class="col-lg-2">
+        <div class="nav_menu ">
+            <?php
+            echo Nav::widget([
+                'options' => ['class' => 'nav flex-column'],
+                'items' => [
+                    ['label' => 'Home', 'url' => ['/site/index']],
+                    ['label' => 'Channel', 'url' => ['/channel/index']],
+                    ['label' => 'Cluster', 'url' => ['/cluster/index']],
+                    ['label' => 'Number', 'url' => ['/number/index']],
+                    ['label' => 'Right', 'url' => ['/right/index']],
+                    ['label' => 'SIP_Devices', 'url' => ['/sipdevice/index']],
+                    ['label' => 'Trank', 'url' => ['/trank/index']],
+                    ['label' => 'Turn', 'url' => ['/turn/index']],
+                    ['label' => 'User', 'url' => ['/user/index']],
+                    Yii::$app->user->isGuest ? (
+                    ['label' => 'Login', 'url' => ['/site/login']]
+                    ) : (
+                        '<li>'
+                        . Html::beginForm(['/site/logout'], 'post')
+                        . Html::submitButton(
+                            'Logout (' . Yii::$app->user->identity->username . ')',
+                            ['class' => 'btn btn-link logout']
+                        )
+                        . Html::endForm()
+                        . '</li>'
+                    )
+                ],
+            ]);
+            ?>
+        </div>
+    </div>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Channel', 'url' => ['/channel/index']],
-            ['label' => 'Cluster', 'url' => ['/cluster/index']],
-            ['label' => 'Number', 'url' => ['/number/index']],
-            ['label' => 'Right', 'url' => ['/right/index']],
-            ['label' => 'SIP_Devices', 'url' => ['/sipdevice/index']],
-            ['label' => 'Trank', 'url' => ['/trank/index']],
-            ['label' => 'Turn', 'url' => ['/turn/index']],
-            ['label' => 'User', 'url' => ['/user/index']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
+    <div class="col-lg-10">
+        <div class="main_content">
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+            <?= Alert::widget() ?>
+            <?= $content ?>
+        </div>
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
+<!--<footer class="footer">-->
+<!--    <div class="container">-->
+<!--        <p class="pull-left">&copy; My Company --><?//= date('Y') ?><!--</p>-->
+<!---->
+<!--        <p class="pull-right">--><?//= Yii::powered() ?><!--</p>-->
+<!--    </div>-->
+<!--</footer>-->
 
 <?php $this->endBody() ?>
 </body>

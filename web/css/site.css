@@ -10,9 +10,16 @@ body {
     padding: 0 0 60px;
 }
 
-.wrap > .container {
-    padding: 70px 15px 20px;
+.main_content {
+    padding: 15px;
+    align-items: center;
+    margin-top: 100px;
 }
+
+.control-label {
+    margin-right: 5px;
+}
+
 
 .footer {
     height: 60px;
@@ -21,15 +28,6 @@ body {
     padding-top: 20px;
 }
 
-.jumbotron {
-    text-align: center;
-    background-color: transparent;
-}
-
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-}
 
 .not-set {
     color: #c55;
@@ -90,15 +88,24 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
+.nav {
+    margin-top: 50px;
+}
+
+.nav > li {
+    padding-left: 10%;
+}
+
+
 /* align the logout "link" (button in form) of the navbar */
 .nav li > form > button.logout {
     padding: 15px;
     border: none;
 }
 
-@media(max-width:767px) {
+@media (max-width: 767px) {
     .nav li > form > button.logout {
-        display:block;
+        display: block;
         text-align: left;
         width: 100%;
         padding: 10px 15px;
