@@ -26,9 +26,11 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+<div class="block_Breadcrumbs">
 <?= Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]) ?>
+</div>
 <div class="row-no-gutters">
     <div class="col-lg-2">
         <div class="nav_menu ">
