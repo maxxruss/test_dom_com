@@ -20,6 +20,12 @@ body {
     background-color: #f5f5f5;
 }
 
+.logo {
+    width: 200px;
+    height: 200px;
+    background-image: url('/web/img/logo.svg');
+}
+
 .nav_menu {
     background: #0071BC;
     height: inherit;

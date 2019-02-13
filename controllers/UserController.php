@@ -9,7 +9,6 @@ use app\models\search\UserSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
-use yii\web\NotAcceptableHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -129,20 +128,6 @@ class UserController extends Controller
         }
 
         throw new ForbiddenHttpException('Недостаточно прав для данного действия');
-    }
-
-    public function actionUpdateadmin()
-    {
-        $model = $this->findModel(3);
-
-
-        $model->password = \Yii::$app->security->generatePasswordHash('admin');
-        $model->save();
-
-
-
-            return $this->redirect(['view', 'id' => $model->id]);
-
     }
 
     /**

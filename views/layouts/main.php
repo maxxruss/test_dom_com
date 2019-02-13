@@ -33,6 +33,7 @@ AppAsset::register($this);
 </div>
 <div class="main row-no-gutters">
     <div class="nav_menu col-lg-2">
+        <div class="logo"></div>
             <?php
             echo Nav::widget([
                 'options' => ['class' => 'nav flex-column'],

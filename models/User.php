@@ -36,6 +36,10 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         ];
     }
 
+    /**
+     * После создания или изменения пользователя - записываем или перезаписываем права в таблицу auth_assignment
+    */
+
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);

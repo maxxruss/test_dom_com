@@ -14,7 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 
     <?= GridView::widget([
@@ -27,13 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return !empty($dataProvider->user->username) ? $dataProvider->user->username : '0'; // $data['name'] для массивов, например, при использовании SqlDataProvider.
                 },
             ],
-//            'user_id',
             'item_name',
-            ['class' => 'yii\grid\ActionColumn',
-                'visibleButtons' => [
-                    'delete' => FALSE,
-                ]],
-
         ],
     ]); ?>
     <?php Pjax::end(); ?>
