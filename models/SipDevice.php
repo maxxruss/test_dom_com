@@ -41,7 +41,7 @@ class SipDevice extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'type_device' => 'Type Device',
+            'type_device' => 'SIP Устройство',
             'user_id' => 'User ID',
         ];
     }

@@ -31,9 +31,8 @@ AppAsset::register($this);
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]) ?>
 </div>
-<div class="row-no-gutters">
-    <div class="col-lg-2">
-        <div class="nav_menu ">
+<div class="main row-no-gutters">
+    <div class="nav_menu col-lg-2">
             <?php
             echo Nav::widget([
                 'options' => ['class' => 'nav flex-column'],
@@ -42,7 +41,7 @@ AppAsset::register($this);
                     ['label' => 'Channel', 'url' => ['/channel/index']],
                     ['label' => 'Cluster', 'url' => ['/cluster/index']],
                     ['label' => 'Number', 'url' => ['/number/index']],
-                    ['label' => 'Right', 'url' => ['/right/index']],
+                    ['label' => 'Right', 'url' => ['/authassignment/index']],
                     ['label' => 'SIP_Devices', 'url' => ['/sipdevice/index']],
                     ['label' => 'Trank', 'url' => ['/trank/index']],
                     ['label' => 'Turn', 'url' => ['/turn/index']],
@@ -62,7 +61,6 @@ AppAsset::register($this);
                 ],
             ]);
             ?>
-        </div>
     </div>
 
     <div class="col-lg-10">

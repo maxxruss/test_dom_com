@@ -32,6 +32,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         return [
             [['username', 'password'], 'required'],
             [['position'], 'string', 'max' => 20],
+            ['username', 'unique', 'targetClass' => User::className(),  'message' => 'Этот логин уже занят'],
         ];
     }
 
@@ -111,17 +112,18 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === md5($password);
+        return Yii::$app->security->validatePassword($password, $this->password);
     }
 
     /**
      * Generates password hash from password and sets it to the model
      *
      * @param string $password
+     * @throws yii\base\Exception
      */
     public function setPassword($password)
     {
-        $this->password = md5($password);
+        $this->password = Yii::$app->security->generatePasswordHash($password);
     }
 
 
@@ -139,5 +141,14 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function getSipDevice(): ActiveQuery
     {
         return $this->hasMany(SipDevice::class, ['user_id'=>'id']);
+    }
+
+
+    /**
+    @return ActiveQuery
+     */
+    public function getAuthAssignment(): ActiveQuery
+    {
+        return $this->hasOne(AuthAssignment::class, ['user_id'=>'id']);
     }
 }

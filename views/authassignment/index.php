@@ -3,38 +3,37 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\search\SipDeviceSearch */
+/* @var $searchModel app\models\search\AuthAssignmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Sip Devices';
+$this->title = 'Права пользователей';
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
-<div class="sip-device-index">
+<div class="auth-assignment-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Sip Device', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'type_device',
             [
                 'label' => 'Пользователь',                 // указываем не id а username свойство зависимой модели User
-                'value' => function ($data) {
-                    return !empty($data->user->username) ? $data->user->username : '0'; // $data['name'] для массивов, например, при использовании SqlDataProvider.
+                'value' => function ($dataProvider) {
+                    return !empty($dataProvider->user->username) ? $dataProvider->user->username : '0'; // $data['name'] для массивов, например, при использовании SqlDataProvider.
                 },
             ],
+//            'user_id',
+            'item_name',
+            ['class' => 'yii\grid\ActionColumn',
+                'visibleButtons' => [
+                    'delete' => FALSE,
+                ]],
 
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
     <?php Pjax::end(); ?>
