@@ -1,7 +1,6 @@
 Options All +ExecCGI -Indexes -Includes +FollowSymLinks
 
-DirectoryIndex web/index.php
-
+#DirectoryIndex web/index.php
 
 IndexIgnore */*
 
