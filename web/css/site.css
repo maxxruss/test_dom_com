@@ -24,6 +24,7 @@ body {
     width: 200px;
     height: 200px;
     background-image: url('/web/img/logo.svg');
+    margin: 30px auto;
 }
 
 .nav_menu {
@@ -112,12 +113,16 @@ a.desc:after {
 /*.nav {*/
     /*margin-top: 50px;*/
 /*}*/
-
-.nav > li {
-    padding-left: 10%;
+.nav  {
     background: #0071BC;
+    padding-left: 25%;
 
 }
+
+/*.nav > li {*/
+    /*background: #0071BC;*/
+
+/*}*/
 
 .nav > li > a,
 .nav > li > form > button.logout {

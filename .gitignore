@@ -19,3 +19,7 @@ tests/_support/_generated
 vagrant
 
 .env
+
+config/db.php
+
+config/web.php
